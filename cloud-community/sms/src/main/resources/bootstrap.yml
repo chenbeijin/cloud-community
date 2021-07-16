@@ -1,0 +1,47 @@
+server:           #tomcat 配置端口
+  port: 56080
+  max-http-header-size: 100KB     # 头信息最大值
+
+nacos:        # 外配置nacos信息
+  server:
+    addr: 127.0.0.1:8848
+
+spring:           #spring 配置
+  application:
+    name: sms       #服务名称
+  main:
+    allow-bean-definition-overriding: true # Spring Boot 2.1 需要设定
+  cloud:          #微服务
+    nacos:
+      discovery:
+        server-addr: ${nacos.server.addr}  #服务地址
+        namespace: e3129e4d-4379-48b0-95e4-98931f4501ef   #分组id
+        cluster-name: DEFAULT   # 默认值
+      config:
+        server-addr: ${nacos.server.addr}    #服务地址
+        file-extension: yaml    #指定配置文件的扩展名，配置文件名称根据application.name的名称加扩展名拼装，为nacos-restful-consumer.yaml
+        namespace: e3129e4d-4379-48b0-95e4-98931f4501ef # 分组id
+        group: COMMON_GROUP
+        extension-configs[0]:
+          data-id: spring-boot-redis.yaml # spring-boot-redis.yaml 配置
+          refresh: true
+          group: COMMON_GROUP # 通用配置组
+
+dubbo:           #项目之间联系 dubbo 配置
+  scan:
+    base-packages: com.flashpay.sms    #扫描包路径
+  protocol:
+    name: dubbo                      #名称
+    port: 20888                      #端口  要不一
+  registry:
+    address: nacos://127.0.0.1:8848   # 注册到 nacos 注册中心中
+  application:
+    qos-port: 22380  # dubbo qos端口配置 命令行注入
+    qos-enable: true #dubbo运维服务是否开启
+  consumer:
+    check: false  #启动时就否检查依赖的服务
+    timeout: 3000
+    retries: -1
+
+swagger:  # 开启swagger
+  enable: true

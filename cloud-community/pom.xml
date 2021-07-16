@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<packaging>pom</packaging>
+	<modules>
+		<module>community-application</module>
+		<module>circle</module>
+		<module>common</module>
+		<module>sms</module>
+	</modules>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.5.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.sh303.community</groupId>
+	<artifactId>cloud-community</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>community</name>
+	<description>sh303 community</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<springboot.version>2.1.5.RELEASE</springboot.version>
+		<nacos.version>2.1.2.RELEASE</nacos.version>
+
+		<org.projectlombok.version>1.18.0</org.projectlombok.version>
+		<org.mapstruct.version>1.3.0.Final</org.mapstruct.version>
+		<mybatis.version>3.4.1</mybatis.version>
+		<fastDFS.client.version>1.27.2</fastDFS.client.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!--springboot-->
+			<dependency>	<!--主要用于实现事务、缓存、安全等功能-->
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-aop</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-thymeleaf</artifactId>
+				<version>${springboot.version}</version>
+			</dependency>
+			<dependency>	<!--springboot 启动web-->
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-web</artifactId>
+				<version>${springboot.version}</version>
+			</dependency>
+			<dependency>    <!-- 健康检查，运维相关 -->
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-actuator</artifactId>
+				<version>${springboot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-test</artifactId>
+				<version>${springboot.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>        <!--redis 开启-->
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-data-redis</artifactId>
+				<version>${springboot.version}</version>
+			</dependency>
+			<!--==================================================================-->
+
+			<!--spring-cloud-alibaba + spring-cloud -->
+			<dependency>    <!--服务发现的客户端，1、将自己的地址注册到服务发现中心，2、从服务发现中心获取服务列表-->
+				<groupId>com.alibaba.cloud</groupId>
+				<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+				<version>${nacos.version}</version>
+			</dependency>
+			<dependency>    <!--服务发现的客户端  获取发现中心的配置文件-->
+				<groupId>com.alibaba.cloud</groupId>
+				<artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+				<version>${nacos.version}</version>
+			</dependency>
+			<dependency>    <!--内部是用dubbo交互信息-->
+				<groupId>com.alibaba.cloud</groupId>
+				<artifactId>spring-cloud-starter-dubbo</artifactId>
+				<version>${nacos.version}</version>
+			</dependency>
+			<dependency>    <!--服务发现的客户端，1、将自己的地址注册到服务发现中心，2、从服务发现中心获取服务列表-->
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Greenwich.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>    <!--开启 zuul 网关-->
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+				<version>${nacos.version}</version>
+			</dependency>
+			<dependency>    <!--开启 接口调用-->
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-openfeign</artifactId>
+				<version>${nacos.version}</version>
+			</dependency>
+			<!--==================================================================-->
+
+			<!--持久层-->
+			<dependency>    <!--mybatis-plus-->
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-boot-starter</artifactId>
+				<version>${mybatis.version}</version>
+			</dependency>
+			<dependency>    <!--对mybatisPlus进行功能增强，进一步简化操作-->
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-extension</artifactId>
+				<version>${mybatis.version}</version>
+			</dependency>
+			<dependency>    <!--mybatisPlus 代码生成器-->
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-generator</artifactId>
+				<version>${mybatis.version}</version>
+			</dependency>
+			<dependency>    <!--mybatis中的日期类型关系可以使用JSR310的类型进行对应--> <!--LocalDate映射数据库中的date类型 LocalTime来映射数据库中的time类型 LocalDateTime字段来映射数据库中的datetime类型-->
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis-typehandlers-jsr310</artifactId>
+				<version>1.0.2</version>
+			</dependency>
+			<dependency>    <!--mysql驱动-->
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>5.1.49</version>
+			</dependency>
+			<dependency>    <!-- 数据库连接池-->
+				<groupId>com.zaxxer</groupId>
+				<artifactId>HikariCP</artifactId>
+				<version>3.3.1</version>
+			</dependency>
+			<!--==================================================================-->
+
+			<!--swagger 页面 api 注释-->
+			<dependency>    <!--Swagger依赖-->
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger2</artifactId>
+				<version>2.8.0</version>
+			</dependency>
+			<dependency>    <!--Swagger依赖-->
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger-ui</artifactId>
+				<version>2.8.0</version>
+			</dependency>
+			<!--=====================================================================================-->
+
+			<!--其他-->
+			<dependency>    <!--hystrix 实现的 AOP 微服务弹性框架-->
+				<groupId>com.netflix.hystrix</groupId>
+				<artifactId>hystrix-javanica</artifactId>
+				<version>1.5.18</version>
+			</dependency>
+			<dependency>    <!--加注解生成getset构造方法的包-->
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${org.projectlombok.version}</version>
+			</dependency>
+			<dependency>    <!--RestTemplate 的 okhttp实现-->
+				<groupId>com.squareup.okhttp3</groupId>
+				<artifactId>okhttp</artifactId>
+				<version>3.6.0</version>
+			</dependency>
+			<dependency>    <!--公共组件包-->
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>2.6</version>
+			</dependency>
+			<dependency>     <!--连接池 对象封装 对象池化组件-->
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-pool2</artifactId>
+				<version>2.5.0</version>
+			</dependency>
+			<dependency>   <!--代码生成器 简化了不同的Java Bean之间映射的处理 DAO层的实体和一些数据传输对象(DTO)-->
+				<groupId>org.mapstruct</groupId>
+				<artifactId>mapstruct-jdk8</artifactId>
+				<version>${org.mapstruct.version}</version>
+			</dependency>
+			<dependency>    <!--代码生成器 简化了不同的Java Bean之间映射的处理 DAO层的实体和一些数据传输对象(DTO)-->
+				<groupId>org.mapstruct</groupId>
+				<artifactId>mapstruct-processor</artifactId>
+				<version>${org.mapstruct.version}</version>
+			</dependency>
+			<dependency>    <!--序列化 反序列化 json-->
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>1.2.47</version>
+			</dependency>
+			<dependency>    <!--云短信-->
+				<groupId>com.github.qcloudsms</groupId>
+				<artifactId>qcloudsms</artifactId>
+				<version>1.0.6</version>
+			</dependency>
+			<dependency>    <!--fastdfs文件上传-->
+				<groupId>com.github.tobato</groupId>
+				<artifactId>fastdfs-client</artifactId>
+				<version>${fastDFS.client.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-api</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>jcl-over-slf4j</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>ch.qos.logback</groupId>
+						<artifactId>logback-classic</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<!--=====================================================================================-->
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
