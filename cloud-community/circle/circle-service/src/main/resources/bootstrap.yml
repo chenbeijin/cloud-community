@@ -22,10 +22,10 @@ spring:           #spring 配置
         file-extension: yaml    #指定配置文件的扩展名，配置文件名称根据application.name的名称加扩展名拼装，为nacos-restful-consumer.yaml
         namespace: e3129e4d-4379-48b0-95e4-98931f4501ef # 分组id
         group: COMMUNITY_GROUP # 分组名称
-#        extension-configs[0]:
-#          data-id: spring-boot-http.yaml # springboot http 配置
-#          refresh: true
-#          group: COMMON_GROUP # 通用配置组
+        extension-configs[0]:
+          data-id: spring-boot-redis.yaml
+          refresh: true
+          group: COMMON_GROUP
 
 dubbo:           #项目之间联系 dubbo 配置
   scan:

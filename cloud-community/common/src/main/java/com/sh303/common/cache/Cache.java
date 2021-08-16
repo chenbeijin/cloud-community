@@ -33,7 +33,7 @@ public interface Cache {
      * @param key
      * @param value
      */
-    void set(String key, String value);
+    void set(String key, Object value);
 
     /**
      * 设置 缓存值 和 缓存时间
@@ -41,12 +41,12 @@ public interface Cache {
      * @param value  缓存值
      * @param expire 缓存时间
      */
-    void set(String key, String value, Integer expire);
+    void set(String key, Object value, Integer expire);
 
     /**
      * 返回key所关联的字符值
      */
-    String get(String key);
+    Object get(String key);
 
     /**
      * key seconds 为给定key设置生存时间。当key过期时，它会被自动删除。
@@ -63,7 +63,7 @@ public interface Cache {
     /**
      * 获取旧值返回新值，不存在返回nil
      */
-    String getAndSet(String key, String newValue);
+    Object getAndSet(String key, String newValue);
 
     /**
      * 分布式锁

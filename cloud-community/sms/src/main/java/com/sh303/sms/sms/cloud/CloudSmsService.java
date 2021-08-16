@@ -8,8 +8,6 @@ import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
-import com.sh303.common.domain.BusinessException;
-import com.sh303.common.domain.CommonErrorCode;
 import com.sh303.sms.dto.SmsPropertiesInfo;
 import com.sh303.sms.sms.SmsService;
 import lombok.extern.slf4j.Slf4j;

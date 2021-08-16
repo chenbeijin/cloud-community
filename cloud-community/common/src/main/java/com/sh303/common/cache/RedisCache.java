@@ -1,5 +1,6 @@
 package com.sh303.common.cache;
 
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
 import java.util.Set;
@@ -11,13 +12,13 @@ import java.util.concurrent.TimeUnit;
 
 public class RedisCache implements Cache {
 
-    private StringRedisTemplate redisTemplate;
+    private RedisTemplate redisTemplate;
 
     /**
      * redis缓存模板
      * @param redisTemplate
      */
-    public RedisCache(StringRedisTemplate redisTemplate) {
+    public RedisCache(RedisTemplate redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
 
@@ -59,7 +60,7 @@ public class RedisCache implements Cache {
      * @param value
      */
     @Override
-    public void set(String key, String value) {
+    public void set(String key, Object value) {
         redisTemplate.opsForValue().set(key, value);
     }
 
@@ -70,7 +71,7 @@ public class RedisCache implements Cache {
      * @param expire 缓存时间
      */
     @Override
-    public void set(String key, String value, Integer expire) {
+    public void set(String key, Object value, Integer expire) {
         redisTemplate.opsForValue().set(key, value, expire, TimeUnit.SECONDS);
     }
 
@@ -78,7 +79,7 @@ public class RedisCache implements Cache {
      * 返回key所关联的字符值
      */
     @Override
-    public String get(String key) {
+    public Object get(String key) {
         return redisTemplate.opsForValue().get(key);
     }
 
@@ -104,7 +105,7 @@ public class RedisCache implements Cache {
      * 获取旧值返回新值，不存在返回nil
      */
     @Override
-    public String getAndSet(String key, String newValue) {
+    public Object getAndSet(String key, String newValue) {
         return redisTemplate.opsForValue().getAndSet(key, newValue);
     }
 

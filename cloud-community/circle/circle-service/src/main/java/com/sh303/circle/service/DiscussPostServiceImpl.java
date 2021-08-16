@@ -1,7 +1,6 @@
 package com.sh303.circle.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sh303.circle.api.DiscussPostService;
 import com.sh303.circle.api.dto.DiscussPostDTO;
@@ -45,9 +44,9 @@ public class DiscussPostServiceImpl implements DiscussPostService {
     @Override
     public int findDiscussPostsRows(String userId) {
         Integer count = 0;
-        if ("0".equals(userId)){
+        if ("0".equals(userId)) {
             count = discussPostMapper.selectCount(new LambdaQueryWrapper<DiscussPost>().notIn(DiscussPost::getStatus, "2"));
-        }else{
+        } else {
             count = discussPostMapper.selectCount(new LambdaQueryWrapper<DiscussPost>().notIn(DiscussPost::getStatus, "2").eq(DiscussPost::getUserId, userId));
         }
         return count;

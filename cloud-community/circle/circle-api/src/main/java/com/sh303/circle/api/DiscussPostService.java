@@ -3,7 +3,6 @@ package com.sh303.circle.api;
 import com.sh303.circle.api.dto.DiscussPostDTO;
 import com.sh303.common.domain.PageVO;
 
-
 public interface DiscussPostService {
 
     /**
@@ -14,7 +13,6 @@ public interface DiscussPostService {
      * @return
      */
     PageVO<DiscussPostDTO> findDiscussPosts(String userId, Integer offset, Integer limit, Integer orderMode);
-
 
     /**
      * 通过用户ID查询用户帖子评论数

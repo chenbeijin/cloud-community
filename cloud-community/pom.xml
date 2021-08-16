@@ -18,7 +18,7 @@
 	<groupId>com.sh303.community</groupId>
 	<artifactId>cloud-community</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>community</name>
+	<name>cloud-community</name>
 	<description>sh303 community</description>
 
 	<properties>
@@ -63,6 +63,11 @@
 			<dependency>        <!--redis 开启-->
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-data-redis</artifactId>
+				<version>${springboot.version}</version>
+			</dependency>
+			<dependency>		<!--为使用邮件发送功能提供了自动化配置-->
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-mail</artifactId>
 				<version>${springboot.version}</version>
 			</dependency>
 			<!--==================================================================-->
