@@ -139,4 +139,12 @@ public interface Cache {
      * create time: 2021/8/19 9:01
      */
     RedisTemplate getRedisTemplate();
+
+    /**
+     * create by: Chen Bei Jin
+     * description: 无序列表添加数据
+     * create time: 2021/8/20 10:20
+     */
+    Long addSet(String key, Object value);
 }
+

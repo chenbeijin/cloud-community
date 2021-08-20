@@ -1,8 +1,11 @@
 package com.sh303.circle.service;
 
 import com.sh303.circle.api.DataService;
+import com.sh303.circle.api.DiscussPostService;
 import com.sh303.common.cache.Cache;
 import com.sh303.common.util.RedisKeyUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
@@ -25,6 +28,8 @@ import java.util.List;
 @org.apache.dubbo.config.annotation.Service
 public class DataServiceImpl implements DataService {
 
+    private static final Logger logger = LoggerFactory.getLogger(DataService.class);
+
     @Autowired
     private Cache cache;
 
@@ -39,6 +44,7 @@ public class DataServiceImpl implements DataService {
     @Override
     public void recordUV(String ip) {
         String redisKey = RedisKeyUtil.getDAUKey(df.format(new Date()));
+        logger.debug("redis key ip add UV");
         cache.addUV(redisKey, ip);
     }
 
@@ -68,8 +74,10 @@ public class DataServiceImpl implements DataService {
         // 合并这些数据
         String redisKey = RedisKeyUtil.getUVKey(df.format(start), df.format(end));
         cache.unionUV(redisKey, keyList);
+        logger.debug("redis key union UV");
 
         // 返回统计的结果
+        logger.debug("redis key size UV");
         return cache.sizeUV(redisKey);
     }
 
@@ -82,6 +90,7 @@ public class DataServiceImpl implements DataService {
     @Override
     public void recordDAU(int userId) {
         String redisKey = RedisKeyUtil.getDAUKey(df.format(new Date()));
+        logger.debug("redis set Bit DAU");
         cache.setBit(redisKey, userId, true);
     }
 
@@ -109,6 +118,7 @@ public class DataServiceImpl implements DataService {
         }
 
         // 进行OR运算
+        logger.debug("redis operation");
         return (long) cache.getRedisTemplate().execute(new RedisCallback() {
             @Override
             public Object doInRedis(RedisConnection connection) throws DataAccessException {

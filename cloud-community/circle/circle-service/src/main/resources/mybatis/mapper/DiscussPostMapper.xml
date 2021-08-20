@@ -26,4 +26,10 @@
             order by type desc, score desc, create_time desc
         </if>
     </select>
+
+    <!--通过用户ID分页查询用户帖子-->
+    <select id="selectDiscussPostPages" resultType="DiscussPost">
+        <include refid="selectDiscussPosts"></include>
+        limit #{offset}, #{limit}
+    </select>
 </mapper>

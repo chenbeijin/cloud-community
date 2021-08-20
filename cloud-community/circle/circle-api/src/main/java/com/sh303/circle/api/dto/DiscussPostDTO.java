@@ -28,7 +28,7 @@ public class DiscussPostDTO implements Serializable {
     /**
      * 用户ID
      */
-    private String userId;
+    private Integer userId;
 
     /**
      * 标题

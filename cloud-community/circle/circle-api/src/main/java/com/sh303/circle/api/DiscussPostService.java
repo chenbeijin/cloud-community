@@ -30,4 +30,12 @@ public interface DiscussPostService {
      */
     int findDiscussPostsRows(String userId);
 
+    /**
+     * create by: Chen Bei Jin
+     * description: 发布评论
+     * create time: 2021/8/20 9:38
+     * @param discussPostDTO
+     */
+    int addDiscussPost(DiscussPostDTO discussPostDTO);
+
 }

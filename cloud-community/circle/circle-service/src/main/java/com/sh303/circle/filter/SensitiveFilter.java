@@ -155,6 +155,7 @@ public class SensitiveFilter {
      * create time: 2021/8/17 9:43
      */
     private class TrieNode {
+
         /**
          * 关键词结束标识
          */

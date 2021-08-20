@@ -1,38 +1,32 @@
 package com.sh303.community.controller;
 
-import com.sh303.circle.api.DiscussPostService;
 import com.sh303.circle.api.UserService;
 import com.sh303.circle.api.dto.UserDTO;
-import com.sh303.common.annotation.LoginRequired;
 import com.sh303.common.util.CommunityConstant;
-import com.sh303.common.util.CommunityUtil;
-import com.sh303.common.util.RedisKeyUtil;
 import com.sh303.community.common.util.HostHolder;
 import com.sh303.file.api.FileService;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.Reference;
-import org.apache.logging.log4j.util.StringMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
-import org.thymeleaf.context.Context;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+/**
+ * @program: cloud-community
+ * @description: 用户控制器
+ * @author: Chen Bei Jin
+ * @create: 2021-08-16 09:15
+ */
 
 @Controller
 @RequestMapping("/user")

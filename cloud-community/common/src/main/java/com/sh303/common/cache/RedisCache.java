@@ -201,7 +201,17 @@ public class RedisCache implements Cache {
      * create time: 2021/8/19 9:01
      */
     @Override
-    public RedisTemplate getRedisTemplate(){
+    public RedisTemplate getRedisTemplate() {
         return redisTemplate;
+    }
+
+    /**
+     * create by: Chen Bei Jin
+     * description: 无序列表添加数据
+     * create time: 2021/8/20 10:20
+     */
+    @Override
+    public Long addSet(String key, Object value) {
+        return redisTemplate.opsForSet().add(key, value);
     }
 }

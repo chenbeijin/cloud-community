@@ -1,6 +1,7 @@
 package com.sh303.circle.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.sh303.circle.api.DiscussPostService;
 import com.sh303.circle.api.UserService;
 import com.sh303.circle.api.dto.LoginTicketDTO;
 import com.sh303.circle.api.dto.UserDTO;
@@ -13,12 +14,12 @@ import com.sh303.common.util.CommunityUtil;
 import com.sh303.common.util.RedisKeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.security.core.GrantedAuthority;
 
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @program: cloud-community
@@ -30,6 +31,8 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @org.apache.dubbo.config.annotation.Service
 public class UserServiceImpl implements UserService, CommunityConstant {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     private UserMapper userMapper;
@@ -52,6 +55,7 @@ public class UserServiceImpl implements UserService, CommunityConstant {
 
         }
         // 从缓存中获取用户
+        logger.debug("redis String get where userId");
         User user = getCache(userId);
         // 用户为空
         if (user == null) {
@@ -126,10 +130,12 @@ public class UserServiceImpl implements UserService, CommunityConstant {
         // dto 转 pojo
         User entity = UserConvert.INSTANCE.dto2entity(userDTO);
         // 新增用户
+        logger.debug("insert one user");
         int result = userMapper.insert(entity);
         // 判断是否新增成功
         if (result > 0) {
             // 查询用户
+            logger.debug("find one user where username");
             entity = userMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getUsername, userDTO.getUsername()));
             // pojo 转 dto
             userDTO = UserConvert.INSTANCE.entity2dto(entity);
@@ -151,6 +157,7 @@ public class UserServiceImpl implements UserService, CommunityConstant {
     @Override
     public int activation(int userId, String code) {
         // 查询用户
+        logger.debug("find one user where userId");
         User user = userMapper.selectById(userId);
         // 判断激活状态
         if (user.getStatus() == 1) {
@@ -158,12 +165,13 @@ public class UserServiceImpl implements UserService, CommunityConstant {
             return ACTIVATION_REPEAT;
             // 判断激活码
         } else if (user.getActivationCode().equals(code)) {
-            // 查询用户
-            User entity = userMapper.selectById(userId);
-            entity.setStatus(1);
+            // 设置用户状态
+            user.setStatus(1);
             // 更新用户
-            userMapper.updateById(entity);
+            logger.debug("update one user where userId");
+            userMapper.updateById(user);
             // 清除缓存
+            logger.debug("redis String del where userId");
             clearCache(userId);
             // 成功
             return ACTIVATION_SUCCESS;
@@ -194,6 +202,7 @@ public class UserServiceImpl implements UserService, CommunityConstant {
             return map;
         }
         // 验证账号
+        logger.debug("find one user where username");
         User user = userMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getUsername, username));
         if (user == null) {
             map.put("usernameMsg", "该账号不存在!");
@@ -219,6 +228,7 @@ public class UserServiceImpl implements UserService, CommunityConstant {
 
         String redisKey = RedisKeyUtil.getTicketKey(loginTicket.getTicket());
         // 把数据 写入 redis
+        logger.debug("login redis String set where ticketKey");
         cache.set(redisKey, loginTicket);
 
         map.put("ticket", loginTicket.getTicket());
@@ -234,8 +244,10 @@ public class UserServiceImpl implements UserService, CommunityConstant {
     @Override
     public void logout(String ticket) {
         String redisKey = RedisKeyUtil.getTicketKey(ticket);
+        logger.debug("logout redis String get where ticket");
         LoginTicketDTO loginTicket = (LoginTicketDTO) cache.get(redisKey);
         loginTicket.setStatus(1);
+        logger.debug("logout redis String set where ticketKey");
         cache.set(redisKey, loginTicket);
     }
 
@@ -248,6 +260,7 @@ public class UserServiceImpl implements UserService, CommunityConstant {
     @Override
     public LoginTicketDTO findLoginTicket(String ticket) {
         String redisKey = RedisKeyUtil.getTicketKey(ticket);
+        logger.debug("find redis String get where ticket");
         return (LoginTicketDTO) cache.get(redisKey);
     }
 
@@ -261,8 +274,10 @@ public class UserServiceImpl implements UserService, CommunityConstant {
         User entity = new User();
         entity.setHeaderUrl(headerUrl);
         // 根据用户ID修改头像
+        logger.debug("update user");
         int rows = userMapper.update(entity, new LambdaQueryWrapper<User>().eq(User::getId, userId));
         // 清除用户ID为userID的缓存
+        logger.debug("redis String del where user update");
         clearCache(userId);
         return rows;
     }
@@ -275,6 +290,7 @@ public class UserServiceImpl implements UserService, CommunityConstant {
      */
     private User getCache(int userId) {
         // 通过ID 获取缓存的 Key值
+        logger.debug("redis String get key");
         String redisKey = RedisKeyUtil.getUserKey(userId);
         // 返回 用户对象
         return (User) cache.get(redisKey);
@@ -292,6 +308,7 @@ public class UserServiceImpl implements UserService, CommunityConstant {
         // 通过ID 获取缓存的 Key值
         String redisKey = RedisKeyUtil.getUserKey(userId);
         // 缓存设置参数
+        logger.debug("redis String set");
         cache.set(redisKey, user, 3600);
         return user;
     }
@@ -306,6 +323,7 @@ public class UserServiceImpl implements UserService, CommunityConstant {
         // 通过ID 获取缓存的 Key值
         String redisKey = RedisKeyUtil.getUserKey(userId);
         // 删除缓存
+        logger.debug("redis String del");
         cache.del(redisKey);
     }
 

@@ -2,10 +2,8 @@ package com.sh303.circle.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.sh303.circle.api.dto.DiscussPostDTO;
 import com.sh303.circle.entity.DiscussPost;
-import io.lettuce.core.dynamic.annotation.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,11 +19,23 @@ import java.util.List;
 public interface DiscussPostMapper extends BaseMapper<DiscussPost> {
 
     /**
-     * 通过用户ID查询用户帖子
+     * create by: Chen Bei Jin
+     * description: 通过用户ID查询用户帖子
+     * create time: 2021/8/20 9:22
      * @param page
      * @param userId    用户ID
      * @param orderMode
-     * @return
      */
     List<DiscussPost> selectDiscussPosts(@Param("page") Page<DiscussPost> page, @Param("userId") String userId, @Param("orderMode") Integer orderMode);
+
+    /**
+     * create by: Chen Bei Jin
+     * description: 通过用户ID分页查询用户帖子
+     * create time: 2021/8/20 9:22
+     * @param limit     分页
+     * @param offset    当前页码
+     * @param userId    用户ID
+     * @param orderMode
+     */
+    List<DiscussPost> selectDiscussPostPages(@Param("userId") int userId, @Param("offset") int offset, @Param("limit") int limit, @Param("orderMode") int orderMode);
 }
