@@ -8,8 +8,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 /**
- * 响应通用参数包装
+ * @program: cloud-community
+ * @description: 响应通用参数包装
+ * @author: Chen Bei Jin
+ * @create: 2021-08-16 09:15
  */
 
 @Data
@@ -18,7 +23,7 @@ import lombok.ToString;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @ApiModel(value = "RestResponse<T>", description = "响应通用参数包装")
-public class RestResponse<T> {
+public class RestResponse<T> implements Serializable {
 
     @ApiModelProperty("响应错误编码,0为正常")
     private int code;
@@ -35,14 +40,18 @@ public class RestResponse<T> {
     }
 
     /**
-     * 成功
+     * create by: Chen Bei Jin
+     * description: 成功
+     * create time: 2021/8/16 14:07
      */
     public static <T> RestResponse<T> success() {
         return new RestResponse<T>();
     }
 
     /**
-     * 成功
+     * create by: Chen Bei Jin
+     * description: 成功
+     * create time: 2021/8/16 14:07
      */
     public static <T> RestResponse<T> success(T result) {
         RestResponse<T> response = new RestResponse<>();
@@ -51,7 +60,9 @@ public class RestResponse<T> {
     }
 
     /**
-     * 成功
+     * create by: Chen Bei Jin
+     * description: 成功
+     * create time: 2021/8/16 14:07
      */
     @JsonInclude
     public Boolean isSuccessful() {
@@ -59,7 +70,9 @@ public class RestResponse<T> {
     }
 
     /**
-     * 有效的失败
+     * create by: Chen Bei Jin
+     * description: 有效的失败
+     * create time: 2021/8/16 14:07
      */
     public static <T> RestResponse<T> validFail(String msg) {
         RestResponse<T> response = new RestResponse<>();

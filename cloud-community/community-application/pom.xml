@@ -74,6 +74,13 @@
         </dependency>
         <!--==================================================================-->
 
+        <!--安全框架: spring security-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <!--==================================================================-->
+
         <!--swagger 页面 api 注释-->
         <dependency>    <!--Swagger依赖-->
             <groupId>io.springfox</groupId>
@@ -136,6 +143,15 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!--验证码工具-->
+        <dependency>
+            <groupId>com.github.penggle</groupId>
+            <artifactId>kaptcha</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+        <!--=====================================================================================-->
+
+        <!--引用-->
         <dependency>
             <groupId>com.sh303.community</groupId>
             <artifactId>common</artifactId>
@@ -148,8 +164,13 @@
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.sh303.community</groupId>
+            <artifactId>community-file-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
         <!--=====================================================================================-->
-
     </dependencies>
 
 </project>

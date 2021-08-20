@@ -1,10 +1,15 @@
 package com.sh303.common.domain;
 
+import java.io.Serializable;
+
 /**
- * 封装分页相关的信息.
+ * @program: cloud-community
+ * @description: 封装分页相关的信息
+ * @author: Chen Bei Jin
+ * @create: 2021-08-16 09:15
  */
 
-public class Page {
+public class Page implements Serializable {
 
     /**
      * 当前页码
@@ -65,8 +70,9 @@ public class Page {
     }
 
     /**
-     * 获取当前页的起始行
-     * @return
+     * create by: Chen Bei Jin
+     * description: 获取当前页的起始行
+     * create time: 2021/8/16 14:04
      */
     public int getOffset() {
         // current * limit - limit
@@ -74,8 +80,9 @@ public class Page {
     }
 
     /**
-     * 获取总页数
-     * @return
+     * create by: Chen Bei Jin
+     * description: 获取总页数
+     * create time: 2021/8/16 14:04
      */
     public int getTotal() {
         // rows / limit [+1]
@@ -87,8 +94,9 @@ public class Page {
     }
 
     /**
-     * 获取起始页码
-     * @return
+     * create by: Chen Bei Jin
+     * description: 获取起始页码
+     * create time: 2021/8/16 14:04
      */
     public int getFrom() {
         int from = current - 2;
@@ -96,8 +104,9 @@ public class Page {
     }
 
     /**
-     * 获取结束页码
-     * @return
+     * create by: Chen Bei Jin
+     * description: 获取结束页码
+     * create time: 2021/8/16 14:05
      */
     public int getTo() {
         int to = current + 2;

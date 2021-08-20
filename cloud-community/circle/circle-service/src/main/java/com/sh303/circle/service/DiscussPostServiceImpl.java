@@ -13,6 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+/**
+ * @program: cloud-community
+ * @description: 个人帖子服务实现
+ * @author: Chen Bei Jin
+ * @create: 2021-08-16 09:15
+ */
+
 @Slf4j
 @org.apache.dubbo.config.annotation.Service
 public class DiscussPostServiceImpl implements DiscussPostService {

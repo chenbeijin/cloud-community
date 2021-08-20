@@ -1,6 +1,15 @@
 package com.sh303.common.util;
 
-public interface CommunityConstant {
+import java.io.Serializable;
+
+/**
+ * @program: cloud-community
+ * @description: 社区常量
+ * @author: Chen Bei Jin
+ * @create: 2021-08-16 09:15
+ */
+
+public interface CommunityConstant extends Serializable {
 
     /**
      * 激活成功

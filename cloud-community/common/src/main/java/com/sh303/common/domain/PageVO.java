@@ -7,15 +7,13 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * 分页
+ * @program: cloud-community
+ * @description: 分页
+ * @author: Chen Bei Jin
+ * @create: 2021-08-16 09:15
  */
 
 public class PageVO<T> implements Iterable<T>, Serializable {
-
-    //private List<T> content = new ArrayList<T>();
-    //private long total;
-    //private int pageNo;
-    //private int pageSize;
 
     /**
      * 多项

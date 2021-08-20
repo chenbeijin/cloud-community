@@ -1,10 +1,15 @@
 package com.sh303.common.util;
 
+import java.io.Serializable;
+
 /**
- * redis 工具类
+ * @program: cloud-community
+ * @description: redis 工具类
+ * @author: Chen Bei Jin
+ * @create: 2021-08-16 09:15
  */
 
-public class RedisUtil {
+public class RedisUtil implements Serializable {
 
     /**
      * 主数据系统标识
@@ -17,7 +22,9 @@ public class RedisUtil {
     private static final String KEY_SPLIT_CHAR = ":";
 
     /**
-     * redis的key键规则定义
+     * create by: Chen Bei Jin
+     * description: redis的key键规则定义
+     * create time: 2021/8/16 14:24
      * @param module 模块名称
      * @param func   方法名称
      * @param args   参数..
@@ -28,7 +35,9 @@ public class RedisUtil {
     }
 
     /**
-     * redis的key键规则定义
+     * create by: Chen Bei Jin
+     * description: redis的key键规则定义
+     * create time: 2021/8/16 14:24
      * @param module 模块名称
      * @param func   方法名称
      * @param objStr 对象.toString()
@@ -39,7 +48,9 @@ public class RedisUtil {
     }
 
     /**
-     * redis的key键规则定义
+     * create by: Chen Bei Jin
+     * description: redis的key键规则定义
+     * create time: 2021/8/16 14:23
      * @param prefix 项目前缀
      * @param module 模块名称
      * @param func   方法名称
@@ -51,7 +62,9 @@ public class RedisUtil {
     }
 
     /**
-     * redis的key键规则定义
+     * create by: Chen Bei Jin
+     * description: redis的key键规则定义
+     * create time: 2021/8/16 14:23
      * @param prefix 项目前缀
      * @param module 模块名称
      * @param func   方法名称
@@ -73,10 +86,11 @@ public class RedisUtil {
     }
 
     /**
-     * redis的key键规则定义
+     * create by: Chen Bei Jin
+     * description: redis的key键规则定义
+     * create time: 2021/8/16 14:23
      * @param redisEnum 枚举对象
      * @param objStr    对象.toString()
-     * @return key
      */
     public static String keyBuilder(RedisEnum redisEnum, String objStr) {
         return keyBuilder(redisEnum.getKeyPrefix(), redisEnum.getModule(), redisEnum.getFunc(), objStr);

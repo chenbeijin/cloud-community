@@ -4,6 +4,8 @@ import com.sh303.common.cache.Cache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
+
 /**
  * redis 验证储存
  */
@@ -30,6 +32,6 @@ public class RedisVerificationStore implements VerificationStore {
      */
     @Override
     public String get(String key) {
-        return cache.get(key);
+        return (String) cache.get(key);
     }
 }

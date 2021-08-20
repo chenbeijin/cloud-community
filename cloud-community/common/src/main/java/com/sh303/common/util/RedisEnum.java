@@ -1,10 +1,15 @@
 package com.sh303.common.util;
 
+import java.io.Serializable;
+
 /**
- * redis 枚举
+ * @program: cloud-community
+ * @description: redis 枚举
+ * @author: Chen Bei Jin
+ * @create: 2021-08-16 09:15
  */
 
-public enum RedisEnum {
+public enum RedisEnum implements Serializable {
 
     /**
      * 数据字典Service - 根据字典类型查询字典数据

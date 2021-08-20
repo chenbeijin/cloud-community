@@ -1,10 +1,15 @@
 package com.sh303.common.util;
 
+import java.io.Serializable;
+
 /**
- * 生成redisKey工具.
+ * @program: cloud-community
+ * @description: 生成redisKey工具
+ * @author: Chen Bei Jin
+ * @create: 2021-08-16 09:15
  */
 
-public class RedisKeyUtil {
+public class RedisKeyUtil implements Serializable {
 
     /**
      * 分隔符
@@ -62,116 +67,128 @@ public class RedisKeyUtil {
     private static final String PREFIX_POST = "post";
 
     /**
-     * 某个实体的赞
+     * create by: Chen Bei Jin
+     * description: 某个实体的赞
      * like:entity:entityType:entityId -> set(userId)
+     * create time: 2021/8/16 14:19
      * @param entityType
      * @param entityId
-     * @return
      */
     public static String getEntityLikeKey(int entityType, int entityId) {
         return PREFIX_ENTITY_LIKE + SPLIT + entityType + SPLIT + entityId;
     }
 
     /**
-     * 某个用户的赞
+     * create by: Chen Bei Jin
+     * description: 某个用户的赞
      * like:user:userId -> int
+     * create time: 2021/8/16 14:20
      * @param userId
-     * @return
      */
     public static String getUserLikeKey(int userId) {
         return PREFIX_USER_LIKE + SPLIT + userId;
     }
 
     /**
-     * 某个用户关注的实体
+     * create by: Chen Bei Jin
+     * description: 某个用户关注的实体
      * followee:userId:entityType -> zset(entityId,now)
+     * create time: 2021/8/16 14:20
      * @param userId
      * @param entityType
-     * @return
      */
     public static String getFolloweeKey(int userId, int entityType) {
         return PREFIX_FOLLOWEE + SPLIT + userId + SPLIT + entityType;
     }
 
     /**
-     * 某个实体拥有的粉丝
+     * create by: Chen Bei Jin
+     * description: 某个实体拥有的粉丝
      * follower:entityType:entityId -> zset(userId,now)
+     * create time: 2021/8/16 14:21
      * @param entityType
      * @param entityId
-     * @return
      */
     public static String getFollowerKey(int entityType, int entityId) {
         return PREFIX_FOLLOWER + SPLIT + entityType + SPLIT + entityId;
     }
 
     /**
-     * 登陆验证码
+     * create by: Chen Bei Jin
+     * description: 登陆验证码
+     * create time: 2021/8/16 14:21
      * @param owner
-     * @return
      */
     public static String getKaptchaKey(String owner) {
         return PREFIX_KAPTCHA + SPLIT + owner;
     }
 
     /**
-     * 登陆的凭证
+     * create by: Chen Bei Jin
+     * description: 登陆的凭证
+     * create time: 2021/8/16 14:21
      * @param ticket
-     * @return
      */
     public static String getTicketKey(String ticket) {
         return PREFIX_TICKET + SPLIT + ticket;
     }
 
     /**
-     * 用户
+     * create by: Chen Bei Jin
+     * description: 用户
+     * create time: 2021/8/16 14:21
      * @param userId
-     * @return
      */
     public static String getUserKey(int userId) {
         return PREFIX_USER + SPLIT + userId;
     }
 
     /**
-     * 单日UV
+     * create by: Chen Bei Jin
+     * description: 单日UV
+     * create time: 2021/8/16 14:22
      * @param date
-     * @return
      */
     public static String getUVKey(String date) {
         return PREFIX_UV + SPLIT + date;
     }
 
     /**
-     * 区间UV
+     * create by: Chen Bei Jin
+     * description: 区间UV
+     * create time: 2021/8/16 14:22
      * @param startDate
      * @param endDate
-     * @return
      */
     public static String getUVKey(String startDate, String endDate) {
         return PREFIX_UV + SPLIT + startDate + SPLIT + endDate;
     }
 
     /**
-     * 单日活跃用户
+     * create by: Chen Bei Jin
+     * description: 单日活跃用户
+     * create time: 2021/8/16 14:22
      * @param date
-     * @return
      */
     public static String getDAUKey(String date) {
         return PREFIX_DAU + SPLIT + date;
     }
 
     /**
-     * 单日区间活跃用户
+     * create by: Chen Bei Jin
+     * description: 单日区间活跃用户
+     * create time: 2021/8/16 14:22
      * @param startDate
      * @param endDate
-     * @return
      */
     public static String getDAUKey(String startDate, String endDate) {
         return PREFIX_DAU + SPLIT + startDate + SPLIT + endDate;
     }
 
     /**
-     * 帖子分数
-     * @return
+     * create by: Chen Bei Jin
+     * description: 帖子分数
+     * create time: 2021/8/16 14:22
      */
     public static String getPostScoreKey() {
         return PREFIX_POST + SPLIT + "score";

@@ -10,6 +10,7 @@
         user_id, title, content, type, status, create_time, comment_count, score
     </sql>
 
+    <!--通过用户ID查询用户帖子-->
     <select id="selectDiscussPosts" resultType="DiscussPost">
         select
         <include refid="selectFields"></include>

@@ -11,7 +11,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * 帖子Mapper
+ * @program: cloud-community
+ * @description: 个人帖子 Mapper
+ * @author: Chen Bei Jin
+ * @create: 2021-08-16 09:15
  */
 
 @Repository

@@ -30,6 +30,10 @@ spring:           #spring 配置
           data-id: email.yaml
           refresh: true
           group: COMMON_GROUP # 通用配置组
+        extension-configs[2]:
+          data-id: spring-boot-redis.yaml
+          refresh: true
+          group: COMMON_GROUP
 
 dubbo:           #项目之间联系 dubbo 配置
   scan:

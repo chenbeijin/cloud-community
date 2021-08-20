@@ -3,21 +3,30 @@ package com.sh303.circle.api;
 import com.sh303.circle.api.dto.DiscussPostDTO;
 import com.sh303.common.domain.PageVO;
 
+/**
+ * @program: cloud-community
+ * @description: 个人帖子服务
+ * @author: Chen Bei Jin
+ * @create: 2021-08-16 09:15
+ */
+
 public interface DiscussPostService {
 
     /**
-     * 通过用户ID查询用户帖子
+     * create by: Chen Bei Jin
+     * description: 通过用户ID查询用户帖子
+     * create time: 2021/8/19 9:07
      * @param userId 用户ID
      * @param offset 页码
      * @param limit  每页显示
-     * @return
      */
     PageVO<DiscussPostDTO> findDiscussPosts(String userId, Integer offset, Integer limit, Integer orderMode);
 
     /**
-     * 通过用户ID查询用户帖子评论数
+     * create by: Chen Bei Jin
+     * description: 通过用户ID查询用户帖子评论数
+     * create time: 2021/8/19 9:08
      * @param userId 用户ID
-     * @return
      */
     int findDiscussPostsRows(String userId);
 

@@ -1,16 +1,20 @@
 package com.sh303.common.util;
 
 import java.io.File;
+import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * 字符串工具类
+ * @program: cloud-community
+ * @description: 字符串工具类
+ * @author: Chen Bei Jin
+ * @create: 2021-08-16 09:15
  */
 
-public class StringUtil {
+public class StringUtil implements Serializable {
 
     /**
      * yyyy-MM-dd日期格式

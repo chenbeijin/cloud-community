@@ -1,5 +1,6 @@
 package com.sh303.common.util;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,9 +10,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
- * 日期处理
+ * @program: cloud-community
+ * @description: 日期处理
+ * @author: Chen Bei Jin
+ * @create: 2021-08-16 09:15
  */
-public class DateUtil {
+
+public class DateUtil implements Serializable {
 
     public static final String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
 
@@ -44,10 +49,11 @@ public class DateUtil {
     }
 
     /**
-     * 从给定的date，加上hour小时 求指定date时间后hour小时的时间
+     * create by: Chen Bei Jin
+     * description: 从给定的date，加上hour小时 求指定date时间后hour小时的时间
+     * create time: 2021/8/16 14:11
      * @param date 指定的时间
      * @param hour 多少小时后
-     * @return
      */
     public static Date addExtraHour(Date date, int hour) {
         Calendar cal = Calendar.getInstance();
@@ -59,10 +65,11 @@ public class DateUtil {
     }
 
     /**
-     * 从给定的date，加上increase天
+     * create by: Chen Bei Jin
+     * description: 从给定的date，加上increase天
+     * create time: 2021/8/16 14:11
      * @param date
      * @param increase
-     * @return
      */
     public static Date increaseDay2Date(Date date, int increase) {
         Calendar cal = Calendar.getInstance();
@@ -74,9 +81,10 @@ public class DateUtil {
     }
 
     /**
-     * 把字符串日期默认转换为yyyy-mm-dd格式的Data对象
+     * create by: Chen Bei Jin
+     * description: 把字符串日期默认转换为yyyy-mm-dd格式的Data对象
+     * create time: 2021/8/16 14:11
      * @param strDate
-     * @return
      */
     public static Date format(String strDate, String format) {
         Date d = null;
@@ -93,7 +101,9 @@ public class DateUtil {
     }
 
     /**
-     * 获取一个简单的日期格式化对象
+     * create by: Chen Bei Jin
+     * description: 获取一个简单的日期格式化对象
+     * create time: 2021/8/16 14:11
      * @return 一个简单的日期格式化对象
      */
     private static SimpleDateFormat getFormatter(String parttern) {
@@ -101,10 +111,11 @@ public class DateUtil {
     }
 
     /**
-     * 获取month所在月的所有天
+     * create by: Chen Bei Jin
+     * description: 获取month所在月的所有天
+     * create time: 2021/8/16 14:12
      * @param month      要查询的日期（如果为null 则默认为当前月）
      * @param dateFormat 返回日期的格式（如果为null 则返回yyyy-MM-dd 格式结果）
-     * @return
      */
     public static List<String> getAllDaysOfMonthInString(Date month, DateFormat dateFormat) {
         List<String> rs = new ArrayList<String>();
@@ -116,7 +127,8 @@ public class DateUtil {
         if (null != month) {
             cad.setTime(month);
         }
-        int day_month = cad.getActualMaximum(Calendar.DAY_OF_MONTH); // 获取当月天数
+        // 获取当月天数
+        int day_month = cad.getActualMaximum(Calendar.DAY_OF_MONTH);
         for (int i = 0; i < day_month; i++) {
             cad.set(Calendar.DAY_OF_MONTH, i + 1);
             rs.add(df.format(cad.getTime()));
@@ -126,7 +138,9 @@ public class DateUtil {
     }
 
     /**
-     * 获取month所在月的所有天
+     * create by: Chen Bei Jin
+     * description: 获取month所在月的所有天
+     * create time: 2021/8/16 14:12
      * @param month 要查询的日期（如果为null 则默认为当前月）
      * @return 日期List
      */
@@ -136,7 +150,8 @@ public class DateUtil {
         if (null != month) {
             cad.setTime(month);
         }
-        int day_month = cad.getActualMaximum(Calendar.DAY_OF_MONTH); // 获取当月天数
+        // 获取当月天数
+        int day_month = cad.getActualMaximum(Calendar.DAY_OF_MONTH);
         for (int i = 0; i < day_month; i++) {
             cad.set(Calendar.DAY_OF_MONTH, i + 1);
             rs.add(cad.getTime());
@@ -146,11 +161,12 @@ public class DateUtil {
     }
 
     /**
-     * 获取指定日期区间所有天
+     * create by: Chen Bei Jin
+     * description: 获取指定日期区间所有天
+     * create time: 2021/8/16 14:12
      * @param begin
      * @param end
      * @param dateFormat (如果为null 则返回yyyy-MM-dd格式的日期)
-     * @return
      */
     public static List<String> getSpecifyDaysOfMonthInString(Date begin, Date end, DateFormat dateFormat) {
         DateFormat df = null;
@@ -166,27 +182,33 @@ public class DateUtil {
     }
 
     /**
-     * 获取指定日期区间所有天
+     * create by: Chen Bei Jin
+     * description: 获取指定日期区间所有天
+     * create time: 2021/8/16 14:12
      * @param begin
      * @param end
-     * @return
      */
     public static List<Date> getSpecifyDaysOfMonth(Date begin, Date end) {
         List<Date> rs = new ArrayList<Date>();
         Calendar cad = Calendar.getInstance();
         int day_month = -1;
-        if (null == begin) {// 设置开始日期为指定日期
+        // 设置开始日期为指定日期
+        if (null == begin) {
             // day_month = cad.getActualMaximum(Calendar.DAY_OF_MONTH); // 获取当月天数
-            cad.set(Calendar.DAY_OF_MONTH, 1);// 设置开始日期为当前月的第一天
+            // 设置开始日期为当前月的第一天
+            cad.set(Calendar.DAY_OF_MONTH, 1);
             begin = cad.getTime();
         }
         cad.setTime(begin);
-        if (null == end) {// 如果结束日期为空 ，设置结束日期为下月的第一天
-            day_month = cad.getActualMaximum(Calendar.DAY_OF_MONTH); // 获取当月天数
+        // 如果结束日期为空 ，设置结束日期为下月的第一天
+        if (null == end) {
+            // 获取当月天数
+            day_month = cad.getActualMaximum(Calendar.DAY_OF_MONTH);
             cad.set(Calendar.DAY_OF_MONTH, day_month + 1);
             end = cad.getTime();
         }
-        cad.set(Calendar.DAY_OF_MONTH, 1);// 设置开始日期为当前月的第一天
+        // 设置开始日期为当前月的第一天
+        cad.set(Calendar.DAY_OF_MONTH, 1);
         Date tmp = begin;
         int i = 1;
         while (true) {
@@ -203,7 +225,9 @@ public class DateUtil {
     }
 
     /**
-     * 获取当前日期
+     * create by: Chen Bei Jin
+     * description: 获取当前日期
+     * create time: 2021/8/16 14:13
      * @return 一个包含年月日的<code>Date</code>型日期
      */
     public static synchronized Date getCurrDate() {
@@ -217,7 +241,9 @@ public class DateUtil {
     }
 
     /**
-     * 获取当前完整时间,样式: yyyy－MM－dd hh:mm:ss
+     * create by: Chen Bei Jin
+     * description: 获取当前完整时间,样式: yyyy－MM－dd hh:mm:ss
+     * create time: 2021/8/16 14:14
      * @return 一个包含年月日时分秒的<code>String</code>型日期。yyyy-MM-dd hh:mm:ss
      */
     public static String getCurrDateTimeStr() {
@@ -225,10 +251,11 @@ public class DateUtil {
     }
 
     /**
-     * 获得指定日期的前一天
+     * create by: Chen Bei Jin
+     * description: 获得指定日期的前一天
+     * create time: 2021/8/16 14:14
      * @param specifiedDay YYYY_MM_DD_HH_MM_SS 格式
      * @param formatStr    日期类型
-     * @return
      */
     public static String getSpecifiedDayBefore(String specifiedDay, String formatStr) {// 可以用new
         // Date().toLocalString()传递参数
@@ -248,10 +275,11 @@ public class DateUtil {
     }
 
     /**
-     * 获得指定日期的后一天
+     * create by: Chen Bei Jin
+     * description: 获得指定日期的后一天
+     * create time: 2021/8/16 14:14
      * @param specifiedDay YYYY_MM_DD_HH_MM_SS 格式
      * @param formatStr    日期类型
-     * @return
      */
     public static String getSpecifiedDayAfter(String specifiedDay, String formatStr) {
         Calendar c = Calendar.getInstance();
@@ -270,8 +298,9 @@ public class DateUtil {
     }
 
     /**
-     * 获取本周第一天的日期
-     * @return
+     * create by: Chen Bei Jin
+     * description: 获取本周第一天的日期
+     * create time: 2021/8/16 14:14
      */
     public static final String getWeekFirstDay() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -282,8 +311,9 @@ public class DateUtil {
     }
 
     /**
-     * 获取当前月的第一天
-     * @return
+     * create by: Chen Bei Jin
+     * description: 获取当前月的第一天
+     * create time: 2021/8/16 14:15
      */
     public static final String getCurrentMonthFirstDay() {
         Calendar cal = Calendar.getInstance();
@@ -295,8 +325,9 @@ public class DateUtil {
     }
 
     /**
-     * 获取昨天开始时间
-     * @return
+     * create by: Chen Bei Jin
+     * description: 获取昨天开始时间
+     * create time: 2021/8/16 14:15
      */
     public static final String getYesterdayStart() {
         Calendar cal = Calendar.getInstance();
@@ -319,7 +350,9 @@ public class DateUtil {
     }
 
     /**
-     * 功能：获取指定月份的第一天<br/>
+     * create by: Chen Bei Jin
+     * description: 功能：获取指定月份的第一天
+     * create time: 2021/8/16 14:15
      */
     public static final String getStartDayWithMonth(String month) throws ParseException {
         Calendar calendar = new GregorianCalendar();
@@ -332,7 +365,9 @@ public class DateUtil {
     }
 
     /**
-     * 功能：获取指定月份的最后一天<br/>
+     * create by: Chen Bei Jin
+     * description: 功能：获取指定月份的最后一天
+     * create time: 2021/8/16 14:15
      */
     public static final String getEndDayWithMonth(String month) throws ParseException {
         Calendar calendar = new GregorianCalendar();
@@ -340,7 +375,8 @@ public class DateUtil {
         SimpleDateFormat mf = new SimpleDateFormat("yyyy-MM");
         Date date = mf.parse(month);
         calendar.setTime(date);
-        calendar.roll(Calendar.DATE, -1);// api解释roll()：向指定日历字段添加指定（有符号的）时间量，不更改更大的字段
+        // api解释roll()：向指定日历字段添加指定（有符号的）时间量，不更改更大的字段
+        calendar.roll(Calendar.DATE, -1);
         return sdf.format(calendar.getTime());
     }
 
@@ -355,8 +391,9 @@ public class DateUtil {
     }
 
     /**
-     * 功能：<br/>
-     * 根据时间 yyyy-MM-dd 获取该日期是本月第几周
+     * create by: Chen Bei Jin
+     * description: 根据时间 yyyy-MM-dd 获取该日期是本月第几周
+     * create time: 2021/8/16 14:15
      */
     public static final int getWeekIndexOfMonth(String dateStr) throws ParseException {
 
@@ -369,7 +406,9 @@ public class DateUtil {
     }
 
     /**
-     * 获取当前时间到指定时间距离多少秒 功能：<br/>
+     * create by: Chen Bei Jin
+     * description: 获取当前时间到指定时间距离多少秒
+     * create time: 2021/8/16 14:16
      */
     public static final int getSecondToDesignationTime(String designationTime) {
         // 24小时制
@@ -387,17 +426,17 @@ public class DateUtil {
 
     public static final int getYear() {
         Calendar cal = Calendar.getInstance();
-        return cal.get(cal.YEAR);
+        return cal.get(Calendar.YEAR);
     }
 
     public static final int getMonth() {
         Calendar cal = Calendar.getInstance();
-        return cal.get(cal.MONTH) + 1;
+        return cal.get(Calendar.MONTH) + 1;
     }
 
     public static final int getDay() {
         Calendar cal = Calendar.getInstance();
-        return cal.get(cal.DATE);
+        return cal.get(Calendar.DATE);
     }
 
 }

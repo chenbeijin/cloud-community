@@ -16,6 +16,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @program: cloud-community
+ * @description: 主页控制器
+ * @author: Chen Bei Jin
+ * @create: 2021-08-16 09:15
+ */
+
 @Controller
 public class HomeController {
 

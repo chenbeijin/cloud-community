@@ -5,15 +5,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
- * 错误响应参数包装
+ * @program: cloud-community
+ * @description: 错误响应参数包装
+ * @author: Chen Bei Jin
+ * @create: 2021-08-16 09:15
  */
 
 @Data
 @ApiModel(value = "RestErrorResponse", description = "错误响应参数包装")
 @NoArgsConstructor
 @AllArgsConstructor
-public class RestErrorResponse {
+public class RestErrorResponse implements Serializable {
 
     private String errCode;
 

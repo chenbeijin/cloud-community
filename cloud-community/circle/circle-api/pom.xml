@@ -12,12 +12,20 @@
     <artifactId>circle-api</artifactId>
 
     <dependencies>
+        <!--安全框架: spring security-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <!--==================================================================-->
+
         <!--引用-->
         <dependency>
             <groupId>com.sh303.community</groupId>
             <artifactId>common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <!--==================================================================-->
     </dependencies>
 
 </project>

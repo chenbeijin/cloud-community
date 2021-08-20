@@ -7,42 +7,49 @@ import org.mapstruct.factory.Mappers;
 import java.util.List;
 
 /**
- * 定义 帖子 DTO 和 帖子 POJO 之间的转换规则
+ * @program: cloud-community
+ * @description: 定义 帖子 DTO 和 帖子 POJO 之间的转换规则
+ * @author: Chen Bei Jin
+ * @create: 2021-08-16 09:15
  */
 
 @org.mapstruct.Mapper
 public interface DiscussPostConvert {
 
     /**
-     * 转换类实例 生成 AccountConvertImpl 实现类 在 target
+     * 转换类实例 生成 DiscussPostConvertImpl 实现类 在 target
      */
     DiscussPostConvert INSTANCE = Mappers.getMapper(DiscussPostConvert.class);
 
     /**
-     * 把dto转换成pojo
+     * create by: Chen Bei Jin
+     * description: 把dto转换成pojo
+     * create time: 2021/8/16 10:31
      * @param discussPostDTO
-     * @return
      */
     DiscussPost dto2entity(DiscussPostDTO discussPostDTO);
 
     /**
-     * 把pojo转换成dto
+     * create by: Chen Bei Jin
+     * description: 把pojo转换成dto
+     * create time: 2021/8/16 10:31
      * @param discussPost
-     * @return
      */
     DiscussPostDTO entity2dto(DiscussPost discussPost);
 
     /**
-     * list之间也可以转换， pojo的List转成dto list
+     * create by: Chen Bei Jin
+     * description: list之间也可以转换， pojo的List转成dto list
+     * create time: 2021/8/16 10:31
      * @param discussPostList
-     * @return
      */
     List<DiscussPostDTO> entityList2dtoList(List<DiscussPost> discussPostList);
 
     /**
-     * list之间也可以转换， dto list转成pojo的List
+     * create by: Chen Bei Jin
+     * description: list之间也可以转换， dto list转成pojo的List
+     * create time: 2021/8/16 10:31
      * @param discussPostDTOList
-     * @return
      */
     List<DiscussPost> dtoList2entityList(List<DiscussPostDTO> discussPostDTOList);
 

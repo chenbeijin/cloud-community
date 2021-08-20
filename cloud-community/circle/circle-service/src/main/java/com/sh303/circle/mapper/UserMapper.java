@@ -6,13 +6,12 @@ import com.sh303.circle.entity.User;
 import org.springframework.stereotype.Repository;
 
 /**
- * <p>
- *  Mapper 接口
- * </p>
- *
- * @author author
- * @since 2021-07-14
+ * @program: cloud-community
+ * @description: 用户 Mapper
+ * @author: Chen Bei Jin
+ * @create: 2021-08-16 09:15
  */
+
 @Repository
 public interface UserMapper extends BaseMapper<User> {
 
