@@ -1,11 +1,11 @@
 package com.sh303.circle.api.dto;
 
-import java.time.LocalDateTime;
-import java.io.Serializable;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @program: cloud-community
@@ -54,6 +54,6 @@ public class MessageDTO implements Serializable {
     /**
      * 创建时间
      */
-    private LocalDateTime createTime;
+    private Date createTime;
 
 }

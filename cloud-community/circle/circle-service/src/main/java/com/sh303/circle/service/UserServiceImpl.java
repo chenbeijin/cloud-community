@@ -12,6 +12,7 @@ import com.sh303.common.cache.Cache;
 import com.sh303.common.util.CommunityConstant;
 import com.sh303.common.util.CommunityUtil;
 import com.sh303.common.util.RedisKeyUtil;
+import com.sh303.common.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -32,7 +33,7 @@ import java.util.*;
 @org.apache.dubbo.config.annotation.Service
 public class UserServiceImpl implements UserService, CommunityConstant {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     private UserMapper userMapper;
@@ -284,6 +285,23 @@ public class UserServiceImpl implements UserService, CommunityConstant {
 
     /**
      * create by: Chen Bei Jin
+     * description: 根据用户名称查询
+     * create time: 2021/8/22 14:21
+     */
+    @Override
+    public UserDTO findUserByName(String username) {
+        // 判断用户名是否为空
+        if (StringUtil.isBlank(username)) {
+            return null;
+        }
+        // 根据用户名称查询
+        User user = userMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getUsername, username));
+        UserDTO userDTO = UserConvert.INSTANCE.entity2dto(user);
+        return userDTO;
+    }
+
+    /**
+     * create by: Chen Bei Jin
      * description: 1. 优先从缓存中取值
      * create time: 2021/8/16 9:21
      * @param userId 用户ID
@@ -326,7 +344,5 @@ public class UserServiceImpl implements UserService, CommunityConstant {
         logger.debug("redis String del");
         cache.del(redisKey);
     }
-
-
 
 }

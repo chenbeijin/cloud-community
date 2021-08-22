@@ -1,13 +1,11 @@
 package com.sh303.circle.service;
 
-import com.sh303.circle.api.DiscussPostService;
 import com.sh303.circle.api.MessageService;
 import com.sh303.circle.api.dto.MessageDTO;
 import com.sh303.circle.convent.MessageConvert;
 import com.sh303.circle.entity.Message;
 import com.sh303.circle.filter.SensitiveFilter;
 import com.sh303.circle.mapper.MessageMapper;
-import org.apache.dubbo.config.annotation.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +23,7 @@ import java.util.List;
 @org.apache.dubbo.config.annotation.Service
 public class MessageServiceImpl implements MessageService {
 
-    private static final Logger logger = LoggerFactory.getLogger(MessageService.class);
+    private static final Logger logger = LoggerFactory.getLogger(MessageServiceImpl.class);
 
     @Autowired
     private MessageMapper messageMapper;

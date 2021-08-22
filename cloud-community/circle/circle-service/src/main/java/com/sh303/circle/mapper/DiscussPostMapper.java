@@ -38,4 +38,12 @@ public interface DiscussPostMapper extends BaseMapper<DiscussPost> {
      * @param orderMode
      */
     List<DiscussPost> selectDiscussPostPages(@Param("userId") int userId, @Param("offset") int offset, @Param("limit") int limit, @Param("orderMode") int orderMode);
+
+    /**
+     * create by: Chen Bei Jin
+     * description: 添加帖子
+     * create time: 2021/8/20 15:39
+     * @param discussPost
+     */
+    int insertDiscussPost(DiscussPost discussPost);
 }

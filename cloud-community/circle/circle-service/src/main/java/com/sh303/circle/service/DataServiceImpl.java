@@ -28,7 +28,7 @@ import java.util.List;
 @org.apache.dubbo.config.annotation.Service
 public class DataServiceImpl implements DataService {
 
-    private static final Logger logger = LoggerFactory.getLogger(DataService.class);
+    private static final Logger logger = LoggerFactory.getLogger(DataServiceImpl.class);
 
     @Autowired
     private Cache cache;

@@ -34,7 +34,7 @@ public class UserController implements CommunityConstant {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    @Autowired
+    @Reference
     private UserService userService;
 
     @Autowired

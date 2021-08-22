@@ -32,7 +32,7 @@ import java.util.concurrent.TimeUnit;
 @org.apache.dubbo.config.annotation.Service
 public class DiscussPostServiceImpl implements DiscussPostService {
 
-    private static final Logger logger = LoggerFactory.getLogger(DiscussPostService.class);
+    private static final Logger logger = LoggerFactory.getLogger(DiscussPostServiceImpl.class);
 
     @Autowired
     private DiscussPostMapper discussPostMapper;
@@ -166,11 +166,38 @@ public class DiscussPostServiceImpl implements DiscussPostService {
         discussPostDTO.setContent(sensitiveFilter.filter(discussPostDTO.getContent()));
 
         DiscussPost discussPost = DiscussPostConvert.INSTANCE.dto2entity(discussPostDTO);
-
-        logger.debug("insert DiscussPost from DB.");
-
         // 添加 评论
-        return discussPostMapper.insert(discussPost);
+        logger.debug("insert DiscussPost from DB.");
+        return discussPostMapper.insertDiscussPost(discussPost);
     }
 
+    /**
+     * create by: Chen Bei Jin
+     * description: 查询帖子
+     * create time: 2021/8/21 8:53
+     * @param id
+     */
+    @Override
+    public DiscussPostDTO findDiscussPostById(int id) {
+        // 查询 评论
+        logger.debug("from DiscussPost from DB where id");
+        DiscussPost discussPost = discussPostMapper.selectById(id);
+        DiscussPostDTO discussPostDTO = DiscussPostConvert.INSTANCE.entity2dto(discussPost);
+        return discussPostDTO;
+    }
+
+    /**
+     * create by: Chen Bei Jin
+     * description: 修改评论数量
+     * create time: 2021/8/21 14:51
+     * @param id           帖子id
+     * @param commentCount 评论数量
+     */
+    @Override
+    public int updateCommentCount(int id, int commentCount) {
+        DiscussPost entity = new DiscussPost();
+        entity.setId(id);
+        entity.setCommentCount(commentCount);
+        return discussPostMapper.updateById(entity);
+    }
 }

@@ -2,6 +2,7 @@ package com.sh303.circle.api.dto;
 
 import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.util.Date;
 
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
@@ -57,6 +58,6 @@ public class CommentDTO implements Serializable {
     /**
      * 创建时间
      */
-    private LocalDateTime createTime;
+    private Date createTime;
 
 }

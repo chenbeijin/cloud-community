@@ -38,4 +38,21 @@ public interface DiscussPostService {
      */
     int addDiscussPost(DiscussPostDTO discussPostDTO);
 
+    /**
+     * create by: Chen Bei Jin
+     * description: 查询帖子
+     * create time: 2021/8/21 8:53
+     * @param id
+     */
+    DiscussPostDTO findDiscussPostById(int id);
+
+    /**
+     * create by: Chen Bei Jin
+     * description: 修改评论数量
+     * create time: 2021/8/21 14:51
+     * @param id           帖子id
+     * @param commentCount 评论数量
+     */
+    int updateCommentCount(int id, int commentCount);
+
 }

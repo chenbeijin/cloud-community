@@ -49,7 +49,7 @@ public class LoginTicketInterceptor implements CommunityConstant, HandlerInterce
         // 从cookie中获取凭证
         String ticket = CookieUtil.getValue(request, "ticket");
 
-        if (ticket != null) {
+         if (ticket != null) {
             // 查询凭证
             LoginTicketDTO loginTicket = userService.findLoginTicket(ticket);
             // 检查凭证是否有效

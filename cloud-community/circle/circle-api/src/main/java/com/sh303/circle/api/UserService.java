@@ -74,4 +74,11 @@ public interface UserService {
      * create time: 2021/8/19 10:34
      */
     int updateHeader(int userId, String headerUrl);
+
+    /**
+     * create by: Chen Bei Jin
+     * description: 根据用户名称查询
+     * create time: 2021/8/22 14:21
+     */
+    UserDTO findUserByName(String username);
 }
