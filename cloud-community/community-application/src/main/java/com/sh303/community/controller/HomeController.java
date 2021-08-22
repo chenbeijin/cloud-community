@@ -10,6 +10,8 @@ import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
@@ -64,6 +66,26 @@ public class HomeController {
         model.addAttribute("discussPosts", discussPosts);
 
         return "/index";
+    }
+
+    /**
+     * create by: Chen Bei Jin
+     * description: 500 错误异常
+     * create time: 2021/8/22 15:07
+     */
+    @GetMapping(path = "/err")
+    public String getErrorPage() {
+        return "/site/error/500";
+    }
+
+    /**
+     * create by: Chen Bei Jin
+     * description: 404 找不到页面异常
+     * create time: 2021/8/22 15:07
+     */
+    @GetMapping(path = "/denied")
+    public String getDeniedPage() {
+        return "/site/error/404";
     }
 
 }
