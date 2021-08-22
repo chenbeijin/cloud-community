@@ -142,6 +142,7 @@ public class MessageController implements CommunityConstant {
         }
         messageDTO.setContent(content);
         messageDTO.setCreateTime(new Date());
+        messageDTO.setStatus(0);
         // 添加私信
         messageService.addMessage(messageDTO);
 
