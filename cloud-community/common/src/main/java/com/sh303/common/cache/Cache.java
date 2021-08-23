@@ -146,5 +146,19 @@ public interface Cache {
      * create time: 2021/8/20 10:20
      */
     Long addSet(String key, Object value);
+
+    /**
+     * create by: Chen Bei Jin
+     * description: 根据key值查询无序列表的大小
+     * create time: 2021/8/23 14:34
+     */
+    Long sizeSet(String key);
+
+    /**
+     * create by: Chen Bei Jin
+     * description: 查询是否存在
+     * create time: 2021/8/23 14:40
+     */
+    Boolean isMember(String key, Object value);
 }
 

@@ -214,4 +214,24 @@ public class RedisCache implements Cache {
     public Long addSet(String key, Object value) {
         return redisTemplate.opsForSet().add(key, value);
     }
+
+    /**
+     * create by: Chen Bei Jin
+     * description: 根据key值查询无序列表的大小
+     * create time: 2021/8/23 14:34
+     */
+    @Override
+    public Long sizeSet(String key) {
+        return redisTemplate.opsForSet().size(key);
+    }
+
+    /**
+     * create by: Chen Bei Jin
+     * description: 查询是否存在
+     * create time: 2021/8/23 14:40
+     */
+    @Override
+    public Boolean isMember(String key, Object value) {
+        return redisTemplate.opsForSet().isMember(key, value);
+    }
 }

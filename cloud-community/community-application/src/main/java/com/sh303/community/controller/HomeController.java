@@ -1,12 +1,15 @@
 package com.sh303.community.controller;
 
 import com.sh303.circle.api.DiscussPostService;
+import com.sh303.circle.api.LikeService;
 import com.sh303.circle.api.UserService;
 import com.sh303.circle.api.dto.DiscussPostDTO;
 import com.sh303.circle.api.dto.UserDTO;
 import com.sh303.common.domain.Page;
 import com.sh303.common.domain.PageVO;
+import com.sh303.common.util.CommunityConstant;
 import org.apache.dubbo.config.annotation.Reference;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,13 +30,16 @@ import java.util.Map;
  */
 
 @Controller
-public class HomeController {
+public class HomeController implements CommunityConstant {
 
     @Reference
     private DiscussPostService discussPostService;
 
     @Reference
     private UserService userService;
+
+    @Reference
+    private LikeService likeService;
 
     /**
      * create by: Chen Bei Jin
@@ -60,6 +66,9 @@ public class HomeController {
                 // 根据帖子用户ID 添加用户数据
                 UserDTO userDTO = userService.findUserById(discussPostDTO.getUserId());
                 map.put("user", userDTO);
+                // 查询某实体点赞的数量
+                long likeCount = likeService.findEntityLikeCount(ENTITY_TYPE_POST, discussPostDTO.getId());
+                map.put("likeCount", likeCount);
                 discussPosts.add(map);
             }
         }
