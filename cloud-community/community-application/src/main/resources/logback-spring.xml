@@ -2,7 +2,7 @@
 <configuration>
     <contextName>community</contextName>
     <property name="LOG_PATH" value="D:/community/work/data"/>
-    <property name="APPDIR" value="application"/>
+    <property name="APPDIR" value="community-application"/>
 
     <!-- error file -->
     <appender name="FILE_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -81,7 +81,7 @@
         </filter>
     </appender>
 
-    <logger name="com.nowcoder.community" level="debug"/>
+    <logger name="com.sh303.community" level="debug"/>
 
     <root level="info">
         <appender-ref ref="FILE_ERROR"/>

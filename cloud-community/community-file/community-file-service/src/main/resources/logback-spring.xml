@@ -2,7 +2,7 @@
 <configuration>
     <contextName>community</contextName>
     <property name="LOG_PATH" value="D:/community/work/data"/>
-    <property name="APPDIR" value="sms"/>
+    <property name="APPDIR" value="community-file"/>
 
     <!-- error file -->
     <appender name="FILE_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -81,7 +81,7 @@
         </filter>
     </appender>
 
-    <logger name="com.sh303.sms" level="debug"/>
+    <logger name="com.sh303.file" level="debug"/>
 
     <root level="info">
         <appender-ref ref="FILE_ERROR"/>
